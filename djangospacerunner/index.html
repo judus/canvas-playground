@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon"
+	      href="http://getbootstrap.com/assets/ico/favicon.ico">
+
+	<title>Django Spacerunner 2d 1.0.0</title>
+
+	<!-- Bootstrap core CSS -->
+
+	<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+	<link href="assets/css/reset.css" rel="stylesheet" type="text/css" media="all">
+	<link href="assets/css/djangospacerunner.css" rel="stylesheet" type="text/css" media="all">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body cz-shortcut-listen="true">
+
+ <div class="game-panel-wrapper left">
+	<div id="character-panel" class="panel panel-default game-panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">Current character</h3>
+		</div>
+		<div class="panel-body">
+			<div class="collapse-child" data-child="content">
+				<h4>Django Spacerunner</h4>
+				<div class="content">
+					<div class="stat stat"><strong>Status: </strong><span class="value">Deserted</span></div>
+					<br/>
+					<div class="stat race"><strong>Race: </strong><span class="value">Terran derivate</span></div>
+					<div class="stat specialty"><strong>Specialty: </strong><span class="value">Killing</span></div>
+					<div class="stat score"><strong>Score: </strong><span class="value">0</span></div>
+					<div class="stat stat"><strong>Level: </strong><span class="value">1</span></div>
+				</div>
+			</div>	
+			<hr/>
+			<div class="collapse-child" data-child="content">
+				<h4>Attributes</h4>
+				<div class="content">
+					<div class="stat slot1"><strong>Health: </strong><span class="value">0 EP</span></div>
+					<div class="stat slot1"><strong>Stamina: </strong><span class="value">0 EP</span></div>
+					<div class="stat slot2"><strong>Velocity: </strong><span class="value">0 EP</span></div>
+					<div class="stat slot2"><strong>Agility: </strong><span class="value">0 EP</span></div>
+					<div class="stat slot4"><strong>Intel: </strong><span class="value">0 EP</span></div>
+				</div>
+			</div>
+			<hr/>
+			<div class="text-center">
+				<button type="button" class="btn btn-spacerunner btn-xs">Save progress</button>	
+				<button type="button" class="btn btn-spacerunner btn-xs">New character</button>
+			</div>
+		</div>
+	</div>	
+	<div id="stats-panel" class="panel panel-default game-panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">Game info</h3>
+		</div>
+		<div class="panel-body">
+			<div class="collapse-child" data-child="content">
+				<h4>Keymap</h4>
+				<div class="content">
+					<ul>
+						<li><strong>A, W, S, D</strong> Move main character/ship with</li>
+						<li><strong>j, l, i, k</strong> Move secondary
+							character/ship</li>
+						<li><strong>ARROW KEYS</strong> Move secondary
+							character/ship in
+							sync with main character/ship
+						</li>
+						<li><strong>SHIFT</strong> Move faster</li>
+						<li><strong>1-0</strong> Turn turrets on/off</li>
+						<li><strong>SPACE</strong> Shoot with main ship</li>
+					</ul>
+					<p><strong>TODO:</strong> ...errr.. oh my..</p>
+					<!--
+					<ul>
+						<li><strong>MOUSE 1</strong> Shoot all turrets to pointer</li>
+						<li>Ability menu <strong>Q</strong></li>
+						<li>Interaction menu <strong>E</strong></li>
+						<li>Heal/Repair <strong>TAB</strong></li>
+					</ul>
+					-->
+				</div>
+			</div>	
+			<hr/>
+			<div class="collapse-child" data-child="content">
+				<h4>About</h4>
+				<div class="content">
+					<p>My first game loop, v1.0.0</p>
+					<p>Unfortunately I don't have time for this.</p>
+				</div>
+			</div>	
+		</div>
+	</div>	
+</div>
+
+<div class="game-panel-wrapper right">
+	<div id="ship-panel" class="panel panel-default game-panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">Current ship</h3>
+		</div>
+		<div class="panel-body">
+			<div class="collapse-child" data-child="content">
+				<h4>FAI-78 Spacecat</h4>
+				<div class="content">
+					<div class="stat class"><strong>Class: </strong><span class="value">Military Corvett</span></div>
+					<div class="stat speed"><strong>Hull: </strong><span class="value">100%</span></div>
+					<div class="stat slot2"><strong>Generator: </strong><span class="value"></span>100 MW</div>
+					<div class="stat speed"><strong>Speed: </strong><span class="value">20 PX/F</span></div>
+					<div class="stat slot3"><strong>Ship-VI: </strong><span class="value">MSH v1.0.3</span></div>
+					<div class="stat speed"><strong>Energy: </strong><span class="value">-10%</span></div>
+					<div class="text-center">
+						<button type="button" data-panel-action="#ships" class="btn btn-spacerunner btn-xs">Change</button>	
+						<button type="button" class="btn btn-spacerunner btn-xs">Sellers</button>	
+						<button type="button" class="btn btn-spacerunner btn-xs">Buyers</button>
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<div class="collapse-child" data-child="content">
+				<h4>Shield</h4>
+				<div class="content">
+					<div class="stat slot1"><strong>Projector: </strong><span class="value">A-Matter-Arc</span></div>
+					<div class="stat slot1"><strong>Projector: </strong><span class="value">A-Matter-Arc</span></div>
+					<div class="stat slot2"><strong>Generator: </strong><span class="value">100 MW</span></div>
+					<div class="stat slot2"><strong>Generator: </strong><span class="value">100 MW</span></div>
+					<div class="stat slot3"><strong>Shield-VI: </strong><span class="value">MS v1.0.3</span></div>
+					<div class="stat speed"><strong>Energy: </strong><span class="value">-0.0%</span></div>
+					<br/>
+					<div class="text-center">
+						<button type="button" data-panel-action="#shields" class="btn btn-spacerunner btn-xs">Change</button>	
+						<button type="button" class="btn btn-spacerunner btn-xs">Sellers</button>	
+						<button type="button" class="btn btn-spacerunner btn-xs">Buyers</button>
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<div class="collapse-child" data-child="content">
+				<h4>Armor</h4>
+				<div class="content">
+					<div class="stat slot1"><strong>Front: </strong><span class="value">Active Graphene</span></div>
+					<div class="stat slot2"><strong>Body: </strong><span class="value">Medium Carbon</span></div>
+					<div class="stat slot3"><strong>WingL: </strong><span class="value">Medium Graphene</span></div>
+					<div class="stat slot3"><strong>WingR: </strong><span class="value">Medium Graphene</span></div>
+					<div class="stat slot4"><strong>Tail: </strong><span class="value">Medium Carbon</span></div>
+					<div class="stat slot3"><strong>Armor-VI: </strong><span class="value">MA v1.0.3</span></div>
+					<div class="stat speed"><strong>Energy: </strong><span class="value">-20.0%</span></div>
+					<br/>
+					<div class="text-center">
+						<button type="button" data-panel-action="#armors" class="btn btn-spacerunner btn-xs">Change</button>	
+						<button type="button" class="btn btn-spacerunner btn-xs">Sellers</button>	
+						<button type="button" class="btn btn-spacerunner btn-xs">Buyers</button>
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<div class="collapse-child" data-child="content">
+				<h4>Weapons</h4>
+				<div class="content">
+					<div class="stat slot1"><strong>Slot 1+2: </strong><span class="value">Basic lasers</span></div>
+					<div class="stat slot2"><strong>Slot 3+4: </strong><span class="value">QuadGatling</span></div>
+					<div class="stat slot2"><strong>Slot 5+6: </strong><span class="value">QuadGatling</span></div>
+					<div class="stat slot3"><strong>Slot 7+8: </strong><span class="value">Pulsecanons</span></div>
+					<div class="stat slot4"><strong>Slot 9+10: </strong><span class="value">Pulsecanons</span></div>
+					<div class="stat slot4"><strong>Slot 11+12: </strong><span class="value">IR-Missiles</span></div>
+					<div class="stat slot3"><strong>Weapon-VI: </strong><span class="value">MW v1.0.3</span></div>
+					<div class="stat speed"><strong>Energy: </strong><span class="value">-30.0%</span></div>
+					<br/>
+					<div class="text-center">
+						<button type="button" data-panel-action="#weapons" class="btn btn-spacerunner btn-xs">Change</button>	
+						<button type="button" data-panel-action="#weapons_sellers" class="btn btn-spacerunner btn-xs">Sellers</button>	
+						<button type="button" data-panel-action="#weapons_byuers" class="btn btn-spacerunner btn-xs">Buyers</button>
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<div class="collapse-child" data-child="content">
+				<h4>Cargo</h4>
+				<div class="content">
+					<div class="stat slot1"><strong>Transformator: </strong><span class="value">3HE</span></div>
+					<div class="stat slot4"><strong>Compressor: </strong><span class="value">1/1000</span></div>
+					<div class="stat slot2"><strong>Containers: </strong><span class="value">20</span></div>
+					<div class="stat slot3"><strong>Load: </strong><span class="value">60%</span></div>
+					<div class="stat slot3"><strong>Cargo-VI: </strong><span class="value">MC v1.0.3</span></div>
+					<div class="stat speed"><strong>Energy: </strong><span class="value">-30.0%</span></div>
+					<br/>
+					<div class="text-center">
+						<button type="button" data-panel-action="#cargo" class="btn btn-spacerunner btn-xs">Change</button>	
+						<button type="button" data-panel-action="#cargo_sellers" class="btn btn-spacerunner btn-xs">Sellers</button>	
+						<button type="button" data-panel-action="#cargo_byuers" class="btn btn-spacerunner btn-xs">Buyers</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div id="canvas-wrapper" class="canvas-overlays"
+     style="width: 2560px; height: 1312px;">
+	<canvas id="map-canvas" width="2560" height="1312"></canvas>
+	<!--
+		<div id="gmap"></div>
+		<div id="characters" class="canvas-overlay">
+			<div class="wrap">
+				<h2>Characters</h2>
+			</div>
+		</div>
+		<div id="ships" class="canvas-overlay">
+			<div class="wrap">
+				<h2>Ships</h2>
+			</div>
+		</div>
+		<div id="armors" class="canvas-overlay">
+			<div class="wrap">
+				<h2>Armors</h2>
+			</div>
+		</div>
+		<div id="shields" class="canvas-overlay">
+			<div class="wrap">
+				<h2>Shields</h2>
+			</div>
+		</div>
+		<div id="weapons" class="canvas-overlay">
+			<div class="wrap">
+				<h2>Weapons</h2>
+			</div>
+		</div>
+		<div id="electonics" class="canvas-overlay">
+			<div class="wrap">
+				<h2>Electronic</h2>
+			</div>
+		</div>
+		<div id="cargo" class="canvas-overlay">
+			<div class="wrap">
+				<h2>Cargo</h2>
+			</div>
+		</div>
+		-->
+	</div>
+
+<!--
+<div class="modal styled-modal draggable hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title"></h4>
+	  </div>
+	  <div class="modal-body"></div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-primary btn-xs" data-dismiss="modal">Close</button>
+	  </div>
+	</div>
+  </div>
+</div>
+-->
+<script>
+	var MODE3D = false;
+</script>
+
+<script src="assets/js/jquery-1.js"></script>
+<script src="assets/js/jquery-ui.js"></script>
+<script src="assets/js/easeljs-0.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/key_status.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/backstretch.js"></script>
+<script src="assets/js/config.js"></script>
+<div class="backstretch"
+     style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 537px; width: 2560px; z-index: -999999; position: fixed;">
+</div>
+<script src="assets/js/singularity.js"></script>
+<script src="assets/js/animationFrame.js"></script>
+<script src="assets/js/sprite.js"></script>
+<script src="assets/js/sound.js"></script>
+<script src="assets/js/keymap.js"></script>
+<script src="assets/js/meters.js"></script>
+<script src="assets/js/renderable.js"></script>
+<script src="assets/js/damage.js"></script>
+<script src="assets/js/bulletModel.js"></script>
+<script src="assets/js/bullet.js"></script>
+<script src="assets/js/bullets.js"></script>
+<script src="assets/js/weaponModel.js"></script>
+<script src="assets/js/weapon.js"></script>
+<script src="assets/js/weaponSlot.js"></script>
+<script src="assets/js/shipModel.js"></script>
+<script src="assets/js/ship.js"></script>
+<script src="assets/js/shipController.js"></script>
+<script src="assets/js/ships.js"></script>
+<script src="assets/js/player.js"></script>
+<script src="assets/js/players.js"></script>
+<script src="assets/js/playerController.js"></script>
+<script src="assets/js/enemyModel.js"></script>
+<script src="assets/js/enemy.js"></script>
+<script src="assets/js/enemies.js"></script>
+<script src="assets/js/enemyController.js"></script>
+<script src="assets/js/game.js"></script>
+<script src="assets/js/loop.js"></script>
+<script src="assets/js/djangospacerunner.js"></script>
+
+</body>
+</html>
