@@ -1,5 +1,5 @@
 import TileResolver from "./TileResolver.js";
-
+const debug = false;
 export function createBackgroundLayer(level, sprites) {
 
 	const tiles = level.tiles;
@@ -113,6 +113,8 @@ export function createCollisionLayer(level) {
 
 export function createCameraLayer(cameraToDraw) {
 	return function drawCameraRect(context, fromCamera) {
+
+		if (debug) {
 		context.strokeStyle = 'purple';
 		context.beginPath();
 		context.rect(
@@ -122,5 +124,6 @@ export function createCameraLayer(cameraToDraw) {
 			cameraToDraw.size.y
 		);
 		context.stroke();
+		}
 	}
 }
