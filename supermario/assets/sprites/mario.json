@@ -1,5 +1,5 @@
 {
-  "imageURL": "/mario/assets/img/characters.gif",
+  "imageURL": "/canvas-playground/supermario/assets/img/characters.gif",
   "frames": [
     {
       "name": "idle",

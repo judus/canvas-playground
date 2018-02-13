@@ -50,7 +50,7 @@ function createTiles(level, backgrounds) {
 }
 
 export function loadSpriteSheet(name) {
-	return loadJSON(`/mario/assets/sprites/${name}.json`)
+	return loadJSON(`/canvas-playground/supermario/assets/sprites/${name}.json`)
 		.then(sheetSpec => Promise.all([
 			sheetSpec,
 			loadImage(sheetSpec.imageURL),
@@ -91,7 +91,7 @@ export function loadSpriteSheet(name) {
 
 export function loadLevel(name) {
 
-	return loadJSON(`/mario/levels/${name}.json`)
+	return loadJSON(`/canvas-playground/supermario/levels/${name}.json`)
 		.then(levelSpec => Promise.all([
 			levelSpec,
 			loadSpriteSheet(levelSpec.spriteSheet)
