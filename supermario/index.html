@@ -6,18 +6,38 @@
 	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
-		#game {display: inline-block; border: 1px solid #000000}
-		#game canvas {display: block;}
-		#controls {border-top: 1px solid #000000; padding: 0px}
-		input[type=button] {margin: 10px}
+		* {
+			margin: 0;
+			padding: 0;
+			font-size: 16px;
+		}
+		body, #tutorial {
+			background: black;
+			color: white;
+		}
+		#tutorial {
+			text-align: center;
+			height: 20px;
+		}
+		#screen {
+			margin: auto;
+			display: block;
+			height: calc(100vh - 20px);
+			image-rendering: optimizeSpeed;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: -o-crisp-edges;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: pixelated;
+			image-rendering: optimize-contrast;
+			-ms-interpolation-mode: nearest-neighbor;
+		}
 	</style>
 </head>
 <body>
-	<h3>Super Mario</h3>
-	<p>Use s, d, space, shift. Mouseclick on canvas to reset mario.</p>
-	<div id="game">
-		<canvas id="screen" width="256" height="224"></canvas>
+	<div id="tutorial">
+		<p>Super Mario - Use a, d, space, shift</p>
 	</div>
+	<canvas id="screen" width="256" height="224"></canvas>
 	<script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
