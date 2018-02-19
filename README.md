@@ -6,3 +6,4 @@
 - Better Game-Loop: I am not happy with how I programmed DjangoSpaceRunner. It has a timed game-loop but it became cluttered due to poor design of the game as a whole. I decided to review every component of the engine one by one. This is the first of many, simple but well timed, abstracted and using ECMAScript 6.
 - [Super Mario](https://canvas-playground.crashleague.net/supermario/): I'm following a tutorial from [Meth Meth Method](https://meth.js.org/) in order to learn more about game engines. So this is not my code, I'm just writing along and I'm observing every step of the development. All credits to Pontus from Meth Meth Method.
 - [3D-Renderer](https://canvas-playground.crashleague.net/3d-renderer/): Another tutorial from Meth Meth Method.
+- [Space Shooter](https://canvas-playground.crashleague.net/spaceshooter/): Make ship always face the mouse and shoot in same direction 
