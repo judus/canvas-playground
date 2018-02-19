@@ -14,7 +14,7 @@
 		body, #tutorial {
 			background: black;
 			color: white;
-			font-size: 16px;
+			font-size: 12px;
 		}
 
 		#tutorial {
@@ -25,23 +25,20 @@
 		#screen {
 			margin: auto;
 			display: block;
-			height: calc(100vh - 20px);
-			image-rendering: optimizeSpeed;
-			image-rendering: -moz-crisp-edges;
-			image-rendering: -o-crisp-edges;
-			image-rendering: -webkit-optimize-contrast;
-			image-rendering: pixelated;
-			image-rendering: optimize-contrast;
-			-ms-interpolation-mode: nearest-neighbor;
+			border: 1px solid #FF9900;
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 		}
 	</style>
 </head>
 <body>
 <div id="tutorial">
-	<p>3D-Renderer</p>
+	<p>Space-Shooter - Turn ship to face mouse and shoot in same direction (w, s, a, d, space)</p>
 </div>
-<canvas id="screen" width="320" height="320"></canvas>
-<script type="module" src="models.js"></script>
+<canvas id="screen" width="400" height="400"></canvas>
 <script type="module" src="main.js"></script>
 </body>
 </html>

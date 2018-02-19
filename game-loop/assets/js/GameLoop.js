@@ -2,7 +2,7 @@ export class GameLoop
 {
 	constructor(canvas) {
 		this.canvas = canvas;
-		this.contect = canvas.getContext('2d');
+		this.context = canvas.getContext('2d');
 		this.isPaused = true;
 	};
 
