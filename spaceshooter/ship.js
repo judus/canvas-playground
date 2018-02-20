@@ -2,11 +2,16 @@ import Particle from "./Particle.js";
 import Bullet from "./bullet.js";
 import Vector2d from "./Vector2d.js";
 
-export default class  Ship extends Particle {
-	constructor(x = 0, y = 0, speed = 0, direction = 0, gravity = 0, mouseVec = null) {
-		super(x, y, speed, direction, gravity);
+export default class Ship extends Particle {
+	constructor(mouseVec = null, x = 0, y = 0, speed = 0, direction = 0, gravity = 0, friction = 0.93) {
+		super(x, y, speed, direction, gravity, friction);
 		this.mouseVec = mouseVec || new Vector2d();
 		this.bullets = [];
+		this.cruising = false;
+	}
+
+	cruise(val = -1) {
+		val > 0 ? this.cruising = true : this.cruising = false;
 	}
 
 	shoot() {
@@ -21,7 +26,7 @@ export default class  Ship extends Particle {
 		);
 	}
 
-	draw(context, thrusting) {
+	draw(context) {
 		context.save();
 		context.translate(this.position.x, this.position.y);
 		let angle = this.getCanvasAngle();
@@ -33,9 +38,9 @@ export default class  Ship extends Particle {
 		context.lineTo(-10, 7);
 		context.lineTo(10, 0);
 
-		if(thrusting) {
+		if(this.cruising) {
 			context.moveTo(-10, 0);
-			context.lineTo(-18, 0);
+			context.lineTo(-15, 0);
 		}
 
 		context.stroke();
@@ -68,25 +73,30 @@ export default class  Ship extends Particle {
 		});
 	}
 
-
-
-	update(canvas) {
-		super.update();
-
-		if(this.position.x > canvas.width) {
+	rebound(boundaries) {
+		if(this.position.x > boundaries.width) {
 			this.position.setX(0);
 		}
 
 		if(this.position.x < 0) {
-			this.position.setX(canvas.width);
+			this.position.setX(boundaries.width);
 		}
 
-		if(this.position.y > canvas.height) {
+		if(this.position.y > boundaries.height) {
 			this.position.setY(0);
 		}
 
 		if(this.position.y < 0) {
-			this.position.setY(canvas.height);
+			this.position.setY(boundaries.height);
 		}
+	}
+
+	update(boundaries) {
+		if( ! this.cruising) {
+			this.velocity.multiplyBy(this.friction);
+		}
+
+		this.position.addTo(this.velocity);
+		this.rebound(boundaries);
 	}
 }
