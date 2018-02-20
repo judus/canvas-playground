@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body, #tutorial {
+			background: black;
+			color: white;
+			font-size: 12px;
+		}
+
+		#tutorial {
+			text-align: center;
+			height: 20px;
+		}
+
+		#screen {
+			margin: auto;
+			display: block;
+			background-color: #FF9900;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+</head>
+<body>
+<div id="tutorial">
+	<p>Space-Shooter - Turn ship to face mouse and shoot in same direction (w, s, a, d, space)</p>
+</div>
+<canvas id="screen" width="0" height="0"></canvas>
+<div id="sliders">
+	<input type="text" name="quadA" value="">
+	<input type="text" name="quadB" value="">
+	<input type="text" name="quadC" value="">
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/theme/vendor/jquery/jquery-3.1.1.min.js"><\/script>')</script>
+<script src="../assets/theme/vendor/p5.js/lib/p5.min.js"></script>
+<script src="../assets/theme/vendor/p5.js/lib/addons/p5.dom.min.js"></script>
+<script src="../assets/theme/vendor/p5.js/lib/addons/p5.sound.min.js"></script>
+<script src="app/utils/p5.js"></script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
