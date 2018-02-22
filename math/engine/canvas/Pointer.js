@@ -22,7 +22,7 @@ export default class Pointer {
 		return this.getRelativePosition();
 	}
 
-	constructor(pointer, offsetX = 0, offsetY = 0, scaleX = null,  scaleY = null) {
+	constructor(pointer, offsetX = 0, offsetY = 0, scaleX = null,  scaleY = null, mathematical = true) {
 		this.pointer = pointer;
 		this.screen = null;
 		this.position = new Vector2d();
@@ -30,7 +30,12 @@ export default class Pointer {
 		this.offset = new Vector2d(offsetX, offsetY);
 		this.scale = new Vector2d(1, 1);
 		this.showLabel = false;
+		this.setInvert(mathematical);
 		this.listenTo(window);
+	}
+
+	setInvert(bool) {
+		this.invert = bool ? -1 : 1;
 	}
 
 	setScreen(screen) {
@@ -76,7 +81,7 @@ export default class Pointer {
 	}
 
 	getAngle(inDegrees = false, invertDegrees) {
-		return inDegrees ? this.getDegrees(invertDegrees) : this.getRadians()
+		return inDegrees ? this.getDegrees(this.invert > 0 ? false : true) : this.getRadians()
 	}
 
 	getRadians() {
@@ -85,6 +90,10 @@ export default class Pointer {
 
 	getDegrees(invert = null) {
 		return invert ? this.pos.getDegrees() * -1 : this.pos.getDegrees();
+	}
+
+	getHypotenuse() {
+		return this.pos.getLength();
 	}
 
 	createInfoBox() {
@@ -113,13 +122,14 @@ export default class Pointer {
 		this.infoBox.style.left = (this.pointer.position.x + 12) + 'px';
 		this.infoBox.style.top = (this.pointer.position.y + styleTop) + 'px';
 		this.infoBox.innerHTML =
-			'<div>ScaledXY: ' + this.x.toFixed(2) + ', ' + this.y.toFixed(2) + '</div>' +
+			'<div>ScaledXY: ' + this.x.toFixed(2) + ', ' + this.y.toFixed(2) * this.invert + '</div>' +
 			'<div>RelativeXY: ' + this.relative.x + ', ' + this.relative.y + '</div>' +
 			'<div>CanvasXY: ' + this.canvas.x + ', ' + this.canvas.y + '</div>' +
 			'<div>InputXY: ' + this.pointer.position.x + ', ' + this.pointer.position.y + '</div>' +
 			'<div>OffsetXY: ' + this.offset.x + ', ' + this.offset.y + '</div>' +
+			'<div>Hypotenuse: ' + this.getHypotenuse() + '</div>' +
 			'<div>Radians: ' + this.getAngle() + '</div>' +
-			'<div>Degrees: ' + this.getDegrees() + '</div>';
+			'<div>Degrees: ' + this.getDegrees(this.invert > 0 ? false : true) + '</div>';
 
 		return this;
 	}

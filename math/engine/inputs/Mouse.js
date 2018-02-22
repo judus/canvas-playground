@@ -1,9 +1,9 @@
 import Vector2d from "../physics/Vector2d.js";
 
 export default class Mouse {
-	constructor(invertDegrees = false) {
+	constructor(invert = false) {
 		this.position = new Vector2d();
-		this.inversion = invertDegrees ? -1 : 1;
+		this.inversion = invert ? -1 : 1;
 		this.showLabel = false;
 		this.infoBox = null;
 		this.log = false;
@@ -20,7 +20,7 @@ export default class Mouse {
 	}
 
 	getDegrees() {
-		return this.position.getDegrees() * this.inversion;
+		return this.position.getDegrees();
 	}
 
 	trackPosition(event) {

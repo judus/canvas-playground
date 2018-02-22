@@ -1,7 +1,7 @@
 import Vector2d from "../physics/Vector2d.js";
 
 export default class Graph {
-	constructor(screen, scaleX = 100, scaleY = 100, stepX = 10, stepY = 10) {
+	constructor(screen, scaleX = 100, scaleY = 100, stepX = 10, stepY = 10, mathematical = true) {
 		this.screen = screen;
 		this.scaleX = scaleX;
 		this.scaleY = scaleY;
@@ -9,8 +9,13 @@ export default class Graph {
 		this.stepY = stepY;
 		this.offsetX = 0;
 		this.offsetY = 0;
+		this.setInvert(mathematical);
 
 		this.screen.pointer.setScale(scaleX, scaleY);
+	}
+
+	setInvert(bool) {
+		this.invert = bool ? -1 : 1;
 	}
 
 	translate(x, y) {
@@ -77,6 +82,22 @@ export default class Graph {
 		ctx.strokeStyle = '#000';
 		ctx.stroke();
 		ctx.closePath();
+
+		ctx.textAlign = "right";
+		ctx.font = '12px Arial';
+		ctx.fillStyle = "#000";
+
+		let nx = px + this.stepX * stepLengthX;
+		ctx.fillText(this.scaleX.toString(), nx - 2, py + 16);
+
+		for(let i = 1; i < this.stepX; i++) {
+			ctx.fillText((this.scaleX / this.stepX * i).toString(), px + stepLengthX * i - 2, py + 16);
+		}
+
+		for(let i = -1; i > this.stepY * 2 * -1; i--) {
+			ctx.fillText((this.scaleY / this.stepY * i).toString(), py - 7, py + 10 + stepLengthY * i);
+		}
+
 
 		indicators && this.drawRulerIndicators();
 
@@ -168,6 +189,26 @@ export default class Graph {
 		ctx.beginPath();
 		ctx.moveTo(this.indX.x, this.indY.y);
 		ctx.lineTo(this.offsetX, this.offsetY);
+		ctx.stroke();
+		ctx.closePath();
+	}
+
+	drawQuadraticCurve(x, a, b, c) {
+		const ctx = this.screen.context;
+		let px = this.offsetX, py = this.offsetY;
+
+		function quad(x, a, b, c) {
+			return a * (x ^ 2) + b * x + c;
+		}
+
+		ctx.moveTo(0, 0);
+
+		ctx.beginPath();
+		for (let i = (this.screen.width / 2) * -1; i < this.screen.width; i++) {
+
+			ctx.lineTo(x + 1, quad(x + 1, 0 * 2000, 0 * 2000, 0 * 2000) + this.screen.width / 2 + 10);
+		}
+
 		ctx.stroke();
 		ctx.closePath();
 	}

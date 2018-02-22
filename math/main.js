@@ -12,7 +12,7 @@ let graph = createGraph(screen);
 
 function createScene() {
 	return new Screen(400, 400, 'screen')
-		.setPointer(new Pointer(new Mouse()).label())
+		.setPointer(new Pointer(new Mouse(true)).label())
 		.toCenter().resize();
 }
 
