@@ -7,3 +7,4 @@
 - [Super Mario](https://canvas-playground.crashleague.net/supermario/): I'm following a tutorial from [Meth Meth Method](https://meth.js.org/) in order to learn more about game engines. So this is not my code, I'm just writing along and I'm observing every step of the development. All credits to Pontus from Meth Meth Method.
 - [3D-Renderer](https://canvas-playground.crashleague.net/3d-renderer/): Another tutorial from Meth Meth Method.
 - [Space Shooter](https://canvas-playground.crashleague.net/spaceshooter/): Make ship always face the mouse and shoot in same direction 
+- [Math](https://canvas-playground.crashleague.net/math/): Maths and graphs
