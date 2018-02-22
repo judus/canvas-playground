@@ -23,7 +23,7 @@ export default class Mouse {
 		return this.position.getDegrees() * this.inversion;
 	}
 
-	trackPosition() {
+	trackPosition(event) {
 		this.position.set(event.clientX, event.clientY);
 	}
 
@@ -66,7 +66,7 @@ export default class Mouse {
 	}
 
 	handleEvent(event) {
-		this.trackPosition();
+		this.trackPosition(event);
 		this.handleSubscriptions();
 		this.showLabel && this.displayInfo();
 		this.log && this.toConsole();
