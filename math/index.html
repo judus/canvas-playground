@@ -6,16 +6,37 @@
 	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
-		canvas {
-			height: 100vh;
-		}
 		#graph-info {
 			top: 20px !important;
 			left: 20px !important;
 		}
 	</style>
 </head>
-<body>
+<body id="body">
 <script type="module" src="main.js"></script>
+<div id="canvas"></div>
+<div>
+	<span id="sliderX">Scale X=<span id="sliderXValue">10</span></span>
+	<span id="sliderPX">X<sup id="sliderPXValue">1</sup>:</span>
+	<span id="sliderStepX">Step X/<span id="sliderStepXValue">10</span>:</span>
+</div>
+<div>
+	<span id="sliderY">Scale Y=<span id="sliderYValue">10</span></span>
+	<span id="sliderPY">Y<sup id="sliderPYValue">1</sup>:</span>
+	<span id="sliderStepY">Step Y/<span id="sliderStepYValue">10</span>:</span>
+</div>
+<div>
+	<span id="sliderA">A=<span id="sliderAValue">1</span></span>
+	<span id="sliderPA">A<sup id="sliderPAValue">n/a</sup></span>
+</div>
+<div>
+	<span id="sliderB">B=<span id="sliderBValue">-4</span></span>
+	<span id="sliderPB">B<sup id="sliderPBValue">n/a</sup>:</span>
+</div>
+<div>
+	<span id="sliderC">C=<span id="sliderCValue">-5</span></span>
+	<span id="sliderPC">C<sup id="sliderPCValue">n/a</sup>:</span>
+</div>
+<div id="pointer"></div>
 </body>
 </html>

@@ -14,6 +14,24 @@ export default class Graph {
 		this.screen.pointer.setScale(scaleX, scaleY);
 	}
 
+	setScaleX(scaleX) {
+		this.scaleX = scaleX;
+		this.screen.pointer.setScale(this.scaleX, this.scaleY);
+	}
+
+	setScaleY(scaleY) {
+		this.scaleY = scaleY;
+		this.screen.pointer.setScale(this.scaleX, this.scaleY);
+	}
+
+	setStepX(stepX) {
+		this.stepX = stepX;
+	}
+
+	setStepY(stepY) {
+		this.stepY = stepY;
+	}
+
 	setInvert(bool) {
 		this.invert = bool ? -1 : 1;
 	}
@@ -84,7 +102,7 @@ export default class Graph {
 		ctx.closePath();
 
 		ctx.textAlign = "right";
-		ctx.font = '12px Arial';
+		ctx.font = '8px Arial';
 		ctx.fillStyle = "#000";
 
 		let nx = px + this.stepX * stepLengthX;
@@ -95,7 +113,7 @@ export default class Graph {
 		}
 
 		for(let i = -1; i > this.stepY * 2 * -1; i--) {
-			ctx.fillText((this.scaleY / this.stepY * i).toString(), py - 7, py + 10 + stepLengthY * i);
+			ctx.fillText((this.scaleY / this.stepY * i * this.invert).toString(), py - 7, py + 10 + stepLengthY * i);
 		}
 
 
@@ -193,25 +211,52 @@ export default class Graph {
 		ctx.closePath();
 	}
 
-	drawQuadraticCurve(x, a, b, c) {
+	drawQuadraticCurve(a = 1, b = 2, c = 3) {
 		const ctx = this.screen.context;
-		let px = this.offsetX, py = this.offsetY;
+
+		let scaleX = this.scaleX / this.screen.width * 2;
+		let scaleY = this.screen.height / this.scaleY / 2;
 
 		function quad(x, a, b, c) {
-			return a * (x ^ 2) + b * x + c;
+			return a * Math.pow(x, 2) + b*x + c;
 		}
 
 		ctx.moveTo(0, 0);
-
 		ctx.beginPath();
-		for (let i = (this.screen.width / 2) * -1; i < this.screen.width; i++) {
 
-			ctx.lineTo(x + 1, quad(x + 1, 0 * 2000, 0 * 2000, 0 * 2000) + this.screen.width / 2 + 10);
+		for (let x = this.screen.width * -1; x <= this.screen.width; x++) {
+			let nx = x * scaleX;
+			let ny = quad(nx, a, b, c);
+			ctx.lineTo(x + this.offsetX, this.invert * ny * scaleY + this.offsetY);
 		}
 
 		ctx.stroke();
 		ctx.closePath();
+
+		this.drawQuadraticCurveIndicators(a, b, c);
 	}
+
+	drawQuadraticCurveIndicators(a, b, c) {
+		const ctx = this.screen.context;
+
+		function quad(x, a, b, c) {
+			return a * Math.pow(x, 2) + b * x + c;
+		}
+
+		let scaleY = this.screen.height / this.scaleY / 2;
+		let ny = quad(this.screen.pointer.x, a, b, c);
+		ny = this.invert * ny * scaleY + this.offsetY;
+
+		ctx.beginPath();
+		ctx.arc(this.screen.pointer.canvas.x, ny, 3, 0, Math.PI * 2);
+		ctx.stroke();
+		ctx.closePath();
+	}
+
+	getQuadInfo() {
+
+	}
+
 
 	update() {
 		this.drawRulers();

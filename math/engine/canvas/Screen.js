@@ -78,7 +78,7 @@ export default class Screen {
 
 	createCanvas(width = 400, height = 400, parent = null) {
 		this.canvas = document.createElement('canvas');
-		this.canvas.style.display = '';
+		this.canvas.style.display = 'block';
 		this.size(width, height);
 		parent && this.parent(parent);
 		return this;

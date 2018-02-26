@@ -30,6 +30,7 @@ export default class Pointer {
 		this.offset = new Vector2d(offsetX, offsetY);
 		this.scale = new Vector2d(1, 1);
 		this.showLabel = false;
+		this.appendTo = null;
 		this.setInvert(mathematical);
 		this.listenTo(window);
 	}
@@ -100,16 +101,22 @@ export default class Pointer {
 		this.infoBox = document.createElement('div');
 		this.infoBox.setAttribute('id', 'graph-info');
 		this.infoBox.style.display = 'inline-block';
-		this.infoBox.style.position = 'absolute';
-		this.infoBox.style.left = this.pointer.position.x;
-		this.infoBox.style.top = this.pointer.position.y;
 		this.infoBox.style.backgroundColor = 'rgba(0,0,0,.7)';
 		this.infoBox.style.padding = '10px';
 		this.infoBox.style.color = '#fff';
 		this.infoBox.style.fontSize = '12px';
 		this.infoBox.style.borderRadius = '4px';
 		this.infoBox.style.fontFamily = 'verdana, arial, courier, monospace';
-		document.body.appendChild(this.infoBox);
+		if (this.appendTo) {
+			let element = document.getElementById(this.appendTo);
+			element.appendChild(this.infoBox);
+		} else {
+			this.infoBox.style.position = 'absolute';
+			this.infoBox.style.left = this.pointer.position.x;
+			this.infoBox.style.top = this.pointer.position.y;
+			document.body.appendChild(this.infoBox);
+		}
+
 	}
 
 	displayInfo() {
@@ -146,7 +153,12 @@ export default class Pointer {
 		});
 	}
 
-	label(show = true) {
+	label(show = true, appendTo = null) {
+
+		if (appendTo) {
+			this.appendTo = appendTo;
+		}
+
 		this.showLabel = show;
 		return this;
 	}
